@@ -1,4 +1,4 @@
-package test.java.com.insigma.mapload.edushi;
+package com.insigma.mapload.edushi;
 
 
 import java.io.*;
