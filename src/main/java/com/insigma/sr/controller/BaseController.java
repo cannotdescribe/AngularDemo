@@ -30,10 +30,9 @@ public class BaseController {
         file.transferTo(newImage);
     }
 
-    @RequestMapping("/puck")
-    public String puck(){
-    	System.out.println("puck");
-    	return "demo01";
+    @RequestMapping("/{ilPath}")
+    public String puck(@PathVariable("ilPath") String ilPath){
+    	return ilPath;
     }
     @RequestMapping("/angular/{ilPath}")
     public String dynamic(@PathVariable("ilPath") String ilPath) throws Exception{

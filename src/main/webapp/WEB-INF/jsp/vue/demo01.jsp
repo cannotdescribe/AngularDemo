@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Title</title>
-    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="js/vue/vue.js"></script>
 </head>
 <body>
 
