@@ -23,6 +23,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+            <scope>system</scope>
 		</dependency>
 		<!-- Provided -->
 		<dependency>
@@ -39,8 +40,15 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-redis</artifactId>
+            <scope>system</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <scope>system</scope>
+        </dependency>
+
+    </dependencies>
 
 	<build>
 		<plugins>

@@ -11,5 +11,6 @@
   </head>
   <body>
   	<h1>欢迎页</h1>
+  	<a href="vue">vue</a>
   </body>
 </html>
