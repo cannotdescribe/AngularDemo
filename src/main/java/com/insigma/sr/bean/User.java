@@ -5,6 +5,9 @@ public class User {
     private Integer age;
     private String desc;
 
+    public User() {
+    }
+
     public User(String name, Integer age, String desc) {
         this.name = name;
         this.age = age;
@@ -33,5 +36,14 @@ public class User {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", desc='" + desc + '\'' +
+                '}';
     }
 }

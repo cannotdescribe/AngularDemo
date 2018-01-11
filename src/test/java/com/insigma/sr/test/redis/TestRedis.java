@@ -7,6 +7,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -34,13 +37,22 @@ public class TestRedis {
         User user=new User("王辉", 12, "aa123456");
         ValueOperations<String, User> operations=redisTemplate.opsForValue();
         operations.set("user", user);
-//        operations.set("user", user,1, TimeUnit.SECONDS);
+
         Thread.sleep(1000);
-        //redisTemplate.delete("com.neo.f");
-        boolean exists=redisTemplate.hasKey("user");
+        boolean exists = redisTemplate.hasKey("user");
+
+
+        ValueOperations<String, User> u = redisTemplate.opsForValue();
         if(exists){
-            System.out.println(redisTemplate);
+            System.out.println(u.get("user"));
         }
-        // Assert.assertEquals("aa", operations.get("com.neo.f").getUserName());
+
+
+
+//        user.setName("twilight");
+//
+//        operations.set("user", user);
+
+
     }
 }
