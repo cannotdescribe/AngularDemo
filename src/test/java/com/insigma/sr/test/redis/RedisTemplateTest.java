@@ -33,12 +33,13 @@ public class RedisTemplateTest {
      */
     @Test
     public void testValueOperations() {
-        String key = "RedisTemplateTest:TEST:String:1";
+//        String key = "RedisTemplateTest:TEST:String:1";
+        String key = "demo01";
         ValueOperations<String, String> valueOp = redisTemplate.opsForValue();
-        valueOp.set(key, "1");
-        Assert.assertEquals("1", valueOp.get(key));
-        redisTemplate.delete(key);
-        Assert.assertNull(valueOp.get(key));
+        valueOp.set(key, "12");
+//        Assert.assertEquals("1", valueOp.get(key));
+//        redisTemplate.delete(key);
+//        Assert.assertNull(valueOp.get(key));
 
     }
 
