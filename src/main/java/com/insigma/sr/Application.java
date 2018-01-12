@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @ComponentScan(basePackages={
         "com.insigma.sr.controller",
-        "com.insigma.sr.config"
+        "com.insigma.sr.config",
+        "com.insigma.sr.redis"
 })
 @Controller
 @EnableAutoConfiguration

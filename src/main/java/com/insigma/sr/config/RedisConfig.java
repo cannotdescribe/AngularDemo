@@ -3,11 +3,13 @@ package com.insigma.sr.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -21,6 +23,7 @@ import java.lang.reflect.Method;
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
+
     @Bean
     public KeyGenerator keyGenerator() {
         return new KeyGenerator() {
@@ -36,13 +39,13 @@ public class RedisConfig extends CachingConfigurerSupport {
             }
         };
     }
-    /*
-         pool:
-         max-active: 8
-         max-wait: -1
-         min-idle: 0
-         timeout: 0
-     */
+     /*
+             pool:
+             max-active: 8
+             max-wait: -1
+             min-idle: 0
+             timeout: 0
+         */
     @Bean("jedisPoolConfig")
     public JedisPoolConfig pool(){
         JedisPoolConfig pool = new JedisPoolConfig();
@@ -55,6 +58,15 @@ public class RedisConfig extends CachingConfigurerSupport {
         return pool;
     }
 
+    @SuppressWarnings("rawtypes")
+    @Bean
+    public CacheManager cacheManager(RedisTemplate redisTemplate) {
+        RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
+        //设置缓存过期时间
+        //rcm.setDefaultExpiration(60);//秒
+        return rcm;
+    }
+
     @Bean("jedisConnectionFactory")
     public JedisConnectionFactory jedisConnectionFactory(JedisPoolConfig pool){
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
@@ -65,14 +77,6 @@ public class RedisConfig extends CachingConfigurerSupport {
         return jedisConnectionFactory;
     }
 
-
-//    @SuppressWarnings("rawtypes")
-//    @Bean
-//    public CacheManager cacheManager(RedisTemplate redisTemplate) {
-//        RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
-//        return rcm;
-//    }
-
     @Bean("redisTemplate")
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
         StringRedisTemplate template = new StringRedisTemplate(factory);
@@ -82,24 +86,12 @@ public class RedisConfig extends CachingConfigurerSupport {
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
         template.setValueSerializer(jackson2JsonRedisSerializer);
+//        template.setKeySerializer(jackson2JsonRedisSerializer);
+//        template.setHashKeySerializer(jackson2JsonRedisSerializer);
+        template.setHashValueSerializer(jackson2JsonRedisSerializer);
         template.afterPropertiesSet();
         return template;
     }
 
-    @Bean("genericJackson2JsonRedisSerializer")
-    public GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer(){
-        GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer();
-        return genericJackson2JsonRedisSerializer;
-    }
-
-    @Bean("serializedRedisTemplate")
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory, GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer) {
-        StringRedisTemplate template = new StringRedisTemplate(factory);
-        template.setValueSerializer(genericJackson2JsonRedisSerializer);
-        template.setKeySerializer(genericJackson2JsonRedisSerializer);
-        template.setHashKeySerializer(genericJackson2JsonRedisSerializer);
-        template.setHashValueSerializer(genericJackson2JsonRedisSerializer);
-        return template;
-    }
 
 }
