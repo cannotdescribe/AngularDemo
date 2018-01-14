@@ -1,10 +1,8 @@
 package com.insigma.sr.redis;
 
+import com.insigma.sr.bean.User;
 import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.hash.HashMapper;
-import org.springframework.data.redis.hash.Jackson2HashMapper;
-import org.springframework.data.redis.hash.ObjectHashMapper;
+import org.springframework.data.redis.hash.BeanUtilsHashMapper;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -14,20 +12,20 @@ import java.util.Map;
 public class HashMapping {
 
     @Resource(name = "redisTemplate")
-    private HashOperations<String, String, Object> hashOperations;
+    private HashOperations<String, String, String> hashOperations;
 
-    private Jackson2HashMapper mapper = new Jackson2HashMapper(true);
+    private BeanUtilsHashMapper<User> mapper = new BeanUtilsHashMapper<User>(User.class);
 
-    public <T> void writeHash(String key, T obj) {
+    public void writeHash(String key, User obj) {
 
-        Map<String, Object> mappedHash = mapper.toHash(obj);
+        Map<String, String> mappedHash = mapper.toHash(obj);
         hashOperations.putAll(key, mappedHash);
     }
 
     @SuppressWarnings("unchecked")
-    public <T> T loadHash(String key) {
-
-        Map<String, Object> loadedHash = hashOperations.entries(key);
-        return (T) mapper.fromHash(loadedHash);
+    public User loadHash(String key) {
+        Map<String, String> loadedHash = hashOperations.entries(key);
+        return mapper.fromHash(loadedHash);
     }
+
 }
