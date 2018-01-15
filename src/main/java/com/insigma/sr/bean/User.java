@@ -4,6 +4,24 @@ public class User {
     private String name;
     private Integer age;
     private String desc;
+    private String desc1;
+    private String desc2;
+
+    public String getDesc1() {
+        return desc1;
+    }
+
+    public void setDesc1(String desc1) {
+        this.desc1 = desc1;
+    }
+
+    public String getDesc2() {
+        return desc2;
+    }
+
+    public void setDesc2(String desc2) {
+        this.desc2 = desc2;
+    }
 
     public User() {
     }
@@ -64,6 +82,8 @@ public class User {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", desc='" + desc + '\'' +
+                ", desc1='" + desc1 + '\'' +
+                ", desc2='" + desc2 + '\'' +
                 '}';
     }
 }
