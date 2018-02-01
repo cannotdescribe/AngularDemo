@@ -8,13 +8,19 @@
         <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     </head>
     <body>
-    <div id="app">
-        <el-button @click="visible = true">按钮</el-button>
-        <el-dialog :visible.sync="visible" title="Hello world">
-            <p>欢迎使用 Element</p>
-        </el-dialog>
-    </div>
+        <div id="app">
+            <el-button @click="visible = true">按钮</el-button>
+            <el-dialog :visible.sync="visible" title="Hello world">
+                <p>欢迎使用 Element</p>
+            </el-dialog>
+        </div>
     </body>
     <script>
+        new Vue({
+            el: '#app',
+            data: function() {
+                return { visible: false }
+            }
+        })
     </script>
 </html>

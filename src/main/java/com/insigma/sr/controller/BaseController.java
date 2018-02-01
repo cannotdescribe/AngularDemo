@@ -1,7 +1,9 @@
 package com.insigma.sr.controller;
 
 import com.insigma.sr.utils.CatUtils;
+import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.util.Enumeration;
 
 @Controller
 public class BaseController {
@@ -42,5 +45,20 @@ public class BaseController {
     @RequestMapping("/vue/{ilPath}")
     public String vue(@PathVariable("ilPath") String ilPath) throws Exception{
         return "/vue/"+ilPath;
+    }
+    @RequestMapping("/demo/{ilPath}")
+    public String demo(@PathVariable("ilPath") String ilPath) throws Exception{
+        return "/demo/"+ilPath;
+    }
+    @ResponseBody
+    @RequestMapping("/test")
+    public JSONObject test(HttpServletRequest request){
+        Enumeration<String> names = request.getParameterNames();
+        while(names.hasMoreElements()){
+            System.out.println(names.nextElement());
+        }
+        JSONObject result = new JSONObject();
+        result.put("success", "1");
+        return result;
     }
 }
