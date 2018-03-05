@@ -1,7 +1,6 @@
-##filter databfile¡¢sln file##
 *.iml
 *.mdb  
 *.ldb  
 *.sln    
 
-/.idea/
+.idea/
