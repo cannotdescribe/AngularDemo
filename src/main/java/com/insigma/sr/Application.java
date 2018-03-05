@@ -1,20 +1,16 @@
-package com.insigma.sr;
+package main.java.com.insigma.sr.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
-@ComponentScan(basePackages={
-        "com.insigma.sr.controller",
-        "com.insigma.sr.config",
-        "com.insigma.sr.redis"
-})
+@ComponentScan(basePackages={"com.insigma.sr.controller"})
 @Controller
 @EnableAutoConfiguration
 public class Application extends SpringBootServletInitializer {
@@ -28,7 +24,7 @@ public class Application extends SpringBootServletInitializer {
     @ResponseBody
     public String hello() {
         System.out.println("hello");
-        return "hello";
+        return "hellosss";
     }
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {

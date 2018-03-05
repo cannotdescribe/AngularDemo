@@ -1,4 +1,4 @@
-package com.insigma.sr.controller;
+package main.java.com.insigma.sr.controller;
 
 import com.insigma.sr.utils.CatUtils;
 import net.sf.json.JSONObject;

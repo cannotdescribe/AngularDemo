@@ -1,4 +1,4 @@
-package com.insigma.sr.utils;
+package main.java.com.insigma.sr.utils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
