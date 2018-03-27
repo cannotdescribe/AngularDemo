@@ -1,4 +1,4 @@
-package main.java.com.insigma.sr.utils;
+package com.insigma.sr.utils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -12,7 +12,6 @@
 <button id="btn3">停止</button>
 </body>
 <script>
-
     var msg = new window.SpeechSynthesisUtterance(
         '力微任重久神疲，再竭衰庸定不支。\n' +
         '苟利国家生死以，岂因祸福避趋之！\n' +

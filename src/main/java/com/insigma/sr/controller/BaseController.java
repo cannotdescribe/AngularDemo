@@ -1,9 +1,7 @@
-package main.java.com.insigma.sr.controller;
+package com.insigma.sr.controller;
 
-import com.insigma.sr.utils.CatUtils;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +19,7 @@ public class BaseController {
     @RequestMapping("/add")
     public void add(@RequestParam(value = "ilPath", required = false) MultipartFile file, HttpServletRequest request) throws Exception{
 
-        String webapp = CatUtils.getWebStaticResource();
+        String webapp = com.insigma.sr.utils.CatUtils.getWebStaticResource();
         StringBuilder sb = new StringBuilder();
         sb.append(webapp.substring(0, webapp.length()-1));
         sb.append("/");

@@ -1,4 +1,4 @@
-package main.java.com.insigma.sr.controller;
+package com.insigma.sr.controller;
 
 import com.insigma.sr.Application;
 import org.springframework.boot.builder.SpringApplicationBuilder;
