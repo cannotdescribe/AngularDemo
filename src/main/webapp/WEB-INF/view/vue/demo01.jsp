@@ -8,13 +8,27 @@
         <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     </head>
     <body>
-    <div id="app">
-        <el-button @click="visible = true">按钮</el-button>
-        <el-dialog :visible.sync="visible" title="Hello world">
-            <p>欢迎使用 Element</p>
-        </el-dialog>
-    </div>
+        <div id="app">
+            <button @click="show = !show">提交</button>
+            <transition name="fff">
+                <p v-if="show">dsads</p>
+            </transition>
+        </div>
     </body>
     <script>
+        new Vue({
+            el: "#app",
+            data: {
+                show: true
+            }
+        })
     </script>
+    <style>
+        .fff-enter-active, .fff-leave-active {
+            transition: opacity .5s;
+        }
+        .fff-enter, .fff-leave-to /* .fade-leave-active below version 2.1.8 */ {
+            opacity: 0;
+        }
+    </style>
 </html>
