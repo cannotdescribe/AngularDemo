@@ -48,6 +48,10 @@ public class BaseController {
     public String demo(@PathVariable("ilPath") String ilPath) throws Exception{
         return "/demo/"+ilPath;
     }
+    @RequestMapping("/websocket/{ilPath}")
+    public String websocket(@PathVariable("ilPath") String ilPath) throws Exception{
+        return "/websocket/"+ilPath;
+    }
     @ResponseBody
     @RequestMapping("/test")
     public JSONObject test(HttpServletRequest request){
