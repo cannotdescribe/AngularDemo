@@ -1,5 +1,6 @@
 package com.insigma.sr.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,9 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.Enumeration;
 
+@Slf4j
 @Controller
 public class BaseController {
-
+    public BaseController(){
+        log.info("BaseController");
+    }
     @ResponseBody
     @RequestMapping("/add")
     public void add(@RequestParam(value = "ilPath", required = false) MultipartFile file, HttpServletRequest request) throws Exception{

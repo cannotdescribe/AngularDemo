@@ -13,10 +13,12 @@ import javax.websocket.server.ServerEndpoint;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Slf4j
 @ServerEndpoint(value = "/websocket")
 @Component
+@CrossOrigin
 public class WebSocketServer {
 //    private static Logger log  =  Logger.getLogger(WebSocketServer. class );
 
@@ -65,7 +67,8 @@ public class WebSocketServer {
     /**
      * 收到客户端消息后调用的方法
      *
-     * @param message 客户端发送过来的消息*/
+     * @param message 客户端发送过来的消息
+     */
     @OnMessage
     public void onMessage(String message, Session session) {
         log.info("来自客户端的消息:" + message);
