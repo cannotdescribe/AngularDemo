@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 @ComponentScan(basePackages={
         "com.insigma.sr.tasks",
-        "com.insigma.sr.controller"
+        "com.insigma.sr.controller",
+        "com.insigma.sr.datastorage"
 })
 @SpringBootApplication
 public class Application{

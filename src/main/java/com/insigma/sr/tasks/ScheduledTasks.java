@@ -13,7 +13,7 @@ import java.io.IOException;
 @Slf4j
 @Component("scheduledTasks")
 public class ScheduledTasks {
-
+    //10.10.17.20
     public ScheduledTasks(){
         log.info("初始化component");
     }
