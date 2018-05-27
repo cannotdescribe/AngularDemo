@@ -1,9 +1,9 @@
 package com.insigma.sr.mock;
 
-import java.util.regex.Pattern;
+import java.util.Random;
 
 public class NameMock {
-    public final static String name;
+    public final static String[] name;
     static{
         String srcName =  "汉皇重色思倾国，御宇多年求不得。\n" +
                 "杨家有女初长成，养在深闺人未识。\n" +
@@ -65,10 +65,21 @@ public class NameMock {
                 "七月七日长生殿，夜半无人私语时。\n" +
                 "在天愿作比翼鸟，在地愿为连理枝。\n" +
                 "天长地久有时尽，此恨绵绵无绝期。";
-        String regex = "^，|。|\n$";
-        name = srcName.replaceAll(regex, "");
-        System.out.println(name);
+        String regex = "，|。|\n";
+        name = srcName.replaceAll(regex, "").split("");
+    }
+    private static Random random = new Random();
+
+    public static String randomArray(String[] array, int length){
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<length;i++){
+            sb.append(array[random.nextInt(array.length)]);
+        }
+        return sb.toString();
     }
 
+    public static String getName(){
+        return randomArray(name, random.nextInt(3)+3);
+    }
 
 }
