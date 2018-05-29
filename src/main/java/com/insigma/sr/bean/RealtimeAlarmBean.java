@@ -16,4 +16,8 @@ public class RealtimeAlarmBean {
     private String alarmTime;
 
     private Integer isRecover;
+    private String parentNodeIsid;
+    private String parentNodeName;
+
+    private String nodeTypeCode;
 }

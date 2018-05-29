@@ -6,9 +6,7 @@ import com.insigma.sr.utils.CatUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @Component
 public class RealtimeSotrage {
@@ -64,6 +62,8 @@ public class RealtimeSotrage {
 
     private Map<String, RealtimeAlarmBean> store = new HashMap<String, RealtimeAlarmBean>();
 
+    private List<RealtimeAlarmBean> storeArray = new ArrayList<>();
+
     private Random random = new Random();
 
 
@@ -74,6 +74,7 @@ public class RealtimeSotrage {
 
         Map<String, String> dv = new HashMap<String, String>();
 
+        int index = 0;
         for(String tagIsid : tagIsids){
             String stName = null;
             String dvName = null;
@@ -105,7 +106,9 @@ public class RealtimeSotrage {
             realtimeAlarmBean.setDvName(dvName);
             realtimeAlarmBean.setTagName(NameMock.getName());
             realtimeAlarmBean.setCodeValue(randomValue());
-            store.put(tagIsid, realtimeAlarmBean);
+
+            storeArray.add(realtimeAlarmBean);
+//            store.put(tagIsid, realtimeAlarmBean);
         }
     }
 
@@ -116,16 +119,17 @@ public class RealtimeSotrage {
         return random.nextInt(3)+1;
     }
 
-    public Map<String, RealtimeAlarmBean> getInit(){
-        return store;
+    public List<RealtimeAlarmBean> getInit(){
+        return storeArray;
     }
 
 
     public RealtimeAlarmBean realtimeAlarm(){
-        RealtimeAlarmBean rab = store.get(tagIsids[random.nextInt(tagIsids.length)]);
+        RealtimeAlarmBean rab = storeArray.get(random.nextInt(tagIsids.length));
         rab.setIsRecover(random.nextInt(2));
         rab.setCodeValue(randomValue());
         rab.setAlarmLevel(randomAlarmLevel());
+        rab.setAlarmTime(CatUtils.getNow());
         return rab;
     }
 }
